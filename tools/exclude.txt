@@ -1,0 +1,11 @@
+.gitignore
+*_unittest.cc
+*_unittest.mm
+*_unittest.nc
+*_perftest.cc
+*_test.cc
+*fuzz*
+*src/org/chromium*
+*.golden
+*.javap*
+*.pyc
