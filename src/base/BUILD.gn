@@ -1098,6 +1098,7 @@ component("base") {
   all_dependent_configs = []
   defines = []
   data = []
+  libs = []
 
   configs += [
     ":base_flags",
@@ -1467,6 +1468,8 @@ component("base") {
       ":base_win_linker_flags",
       "//tools/win/DebugVisualizers:chrome",
     ]
+  } else if (is_linux) {
+    libs += [ "event_core" ]
   } else if ((!is_nacl && !is_fuchsia) || is_nacl_nonsfi) {
     # Non-Windows.
     deps += [ "//base/third_party/libevent" ]
