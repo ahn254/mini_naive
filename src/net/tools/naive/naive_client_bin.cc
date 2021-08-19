@@ -4,6 +4,7 @@
 // found in the LICENSE file.
 
 #include <cstdlib>
+#include <iostream>
 #include <limits>
 #include <memory>
 #include <string>
@@ -23,6 +24,7 @@
 #include "base/task_scheduler/task_scheduler.h"
 #include "base/values.h"
 #include "build/build_config.h"
+#include "components/version_info/version_info.h"
 #include "net/base/auth.h"
 #include "net/http/http_auth.h"
 #include "net/http/http_auth_cache.h"
@@ -131,6 +133,7 @@ bool ParseCommandLineFlags(Params* params) {
                  "\n"
                  "Options:\n"
                  "-h, --help                  Show this help message and exit\n"
+                 "-v, --version               Print version\n"
                  "--addr=<address>            Address to listen on\n"
                  "--port=<port>               Port to listen on\n"
                  "--proxy=https://<user>:<pass>@<domain>[:port]\n"
@@ -138,6 +141,12 @@ bool ParseCommandLineFlags(Params* params) {
                  "--log                       Log to stderr, otherwise no log\n"
                  "--log-net-log=<path>        Save NetLog\n"
                  "--ssl-key-log-file=<path>   Save SSL keys for Wireshark\n";
+    exit(EXIT_SUCCESS);
+    return false;
+  }
+
+  if (line.HasSwitch("v") || line.HasSwitch("version")) {
+    std::cout << "naive " << version_info::GetVersionNumber() << std::endl;
     exit(EXIT_SUCCESS);
     return false;
   }
